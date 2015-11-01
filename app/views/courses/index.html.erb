@@ -1,4 +1,4 @@
-<% unless Course.all.empty? %>
+<% unless @courses.empty? %>
 <p>You are currently associated with the following courses.</p>
 
 <% @courses.each do |course| %>
@@ -8,14 +8,9 @@
     </div>
     <div class="panel-body">
       <p><%= course.description %></p>
-      <p><em>Role(s)</em>:
-        <% course.roles.where(user: current_user).each do |role| %>
-        <span class="label label-primary"><%= role.title.humanize %></span> 
-        <% end %>
-      </p>
     </div>
   </div>
 <% end %>
 <% else %>
-<div class="alert alert-info" role="alert">You are not associated with any courses.</div>
+<div class="alert alert-warning" role="alert">You are not associated with any courses.</div>
 <% end %>
